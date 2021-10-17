@@ -1,0 +1,24 @@
+{
+    "name": "devops",
+    "version": "1.0.0",
+    "description": "Poll",
+    "scripts": {
+        "client": "cd client && npm start",
+        "server": "cd server && npm start",
+        "docker:client": "cd client && docker build -t client .",
+        "docker:server": "cd server && docker build -t server .",
+        "cy:open": "cd client && npm start-test-open",
+        "cy:run": "cd client && npm start-test",
+        "start": "concurrently 'npm run server' 'npm run client' 3000",
+        "test-open": "concurrently --kill-others 'npm run server' 'npm run client' 'npm run cy:open'",
+        "test-run": "concurrently --kill-others 'npm run server' 'npm run client' 'npm run cy:run'",
+        "dockerize": "concurrently --kill-others 'npm run docker:client' 'npm run docker:server'",
+        "docker:compose": "docker-compose up"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "concurrently": "^3.6.1"
+    }
+}
